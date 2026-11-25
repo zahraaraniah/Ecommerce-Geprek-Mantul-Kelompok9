@@ -57,8 +57,8 @@ include __DIR__ . '/includes/header.php';
   <?php foreach ($produkUnggulan as $p): ?>
     <a href="<?= BASE_URL ?>/modules/katalog/detail.php?id=<?= $p['id'] ?>" class="product-card">
       <div class="product-thumb">
-        <img 
-        src="<?= BASE_URL ?>/assets/img/<?= clean($p['gambar']) ?>" alt="<?= clean($p['nama_produk']) ?>">
+         <img 
+          src="<?= BASE_URL ?>uploads/produk/<?= clean($p['gambar']) ?>" alt="<?= clean($p['nama_produk']) ?>">
       </div>
       <div class="product-info">
         <div class="product-cat"><?= clean($p['nama_kategori']) ?></div>
