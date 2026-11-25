@@ -1,17 +1,18 @@
 <?php
 /**
- * =====================================================================
+ * ============================================================================
  * FILE INI: KONEKSI DATABASE
- * =====================================================================
+ * ============================================================================
  */
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'db_ayam_erp');
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_PORT', getenv('DB_PORT') ?: '3306');
+define('DB_USER', getenv('DB_USERNAME') ?: 'root');
+define('DB_PASS', getenv('DB_PASSWORD') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'db_ayam_erp');
 
 try {
     $pdo = new PDO(
-        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4",
         DB_USER,
         DB_PASS,
         [
