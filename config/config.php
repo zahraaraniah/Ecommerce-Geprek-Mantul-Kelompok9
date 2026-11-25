@@ -10,6 +10,10 @@
 if (!defined('NO_SESSION') && session_status() === PHP_SESSION_NONE) session_start();
 
 define('BASE_URL', '/geprek-mantul-erp');
+// Otomatis memakai '/geprek-mantul-erp' di XAMPP dan '' (root) di Wasmer
+$isLocal = isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+define('BASE_URL', $isLocal ? '/geprek-mantul-erp' : '');
+
 define('SITE_NAME', 'Geprek Mantul');
 define('WHATSAPP_ADMIN', '6281234567890');
 define('ONGKIR_DEFAULT', 8000);
