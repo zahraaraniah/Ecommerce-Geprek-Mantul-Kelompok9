@@ -24,7 +24,7 @@ include __DIR__ . '/../../includes/header.php';
 
 <div class="detail-wrap">
   <div class="detail-img">
-    <img src="<?= BASE_URL ?>/assets/img/<?= clean($produk['gambar']) ?>" alt="<?= clean($produk['nama_produk']) ?>">
+    src="<?= BASE_URL ?>/uploads/produk/<?= clean($p['gambar']) ?>" alt="<?= clean($p['nama_produk']) ?>">
   </div>
   <div class="detail-info">
     <div class="product-cat"><?= clean($produk['nama_kategori']) ?></div>
