@@ -1,11 +1,16 @@
 <?php
 /**
- * FILE INI: LOGIN PELANGGAN
+ * FILE INI: LOGIN PELANGGAN & ADMIN (OTOMATIS SESUAI PERAN)
  */
 require_once __DIR__ . '/../../config/config.php';
 $pageTitle = "Masuk";
 
-if (is_login()) redirect(BASE_URL . '/index.php');
+if (!empty($_SESSION['admin_id'])) {
+    redirect(BASE_URL . '/admin/dashboard.php');
+}
+if (is_login()) {
+    redirect(BASE_URL . '/index.php');
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -16,11 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['kata_sandi'])) {
-        $_SESSION['pengguna_id'] = $user['id'];
-        $_SESSION['pengguna_nama'] = $user['nama_lengkap'];
-        $_SESSION['pengguna_peran'] = $user['peran'];
-        set_flash('success', 'Selamat datang kembali, ' . $user['nama_lengkap'] . '!');
-        redirect(BASE_URL . '/index.php');
+        session_regenerate_id(true);
+
+        if (in_array($user['peran'], ['superadmin', 'gudang', 'kasir'], true)) {
+            $_SESSION['admin_id'] = $user['id'];
+            $_SESSION['admin_nama'] = $user['nama_lengkap'];
+            $_SESSION['admin_peran'] = $user['peran'];
+            redirect(BASE_URL . '/admin/dashboard.php');
+        } else {
+            $_SESSION['pengguna_id'] = $user['id'];
+            $_SESSION['pengguna_nama'] = $user['nama_lengkap'];
+            $_SESSION['pengguna_peran'] = $user['peran'];
+            set_flash('success', 'Selamat datang kembali, ' . $user['nama_lengkap'] . '!');
+            redirect(BASE_URL . '/index.php');
+        }
     } else {
         set_flash('danger', 'Email atau password salah, atau akun tidak aktif.');
     }
