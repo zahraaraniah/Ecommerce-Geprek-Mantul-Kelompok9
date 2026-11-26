@@ -6,7 +6,7 @@ include __DIR__ . '/../../includes/header.php';
 
 <div class="about-wrap">
   <div class="about-img">
-    <img src="<?= BASE_URL ?>/assets/img/banner.jpg" alt="Ayam Geprek Mantul">
+    <img src="<?= BASE_URL ?>/assets/img/AyamGeprek.jpg" alt="Ayam Geprek Mantul" style="width: 340px; max-width: 100%; height: auto; border-radius: 14px; object-fit: cover; flex-shrink: 0;">
   </div>
 
   <div class="about-text">
