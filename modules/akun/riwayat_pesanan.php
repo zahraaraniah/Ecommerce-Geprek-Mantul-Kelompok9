@@ -86,7 +86,7 @@ include __DIR__ . '/../../includes/header.php';
       <div>
         <span class="order-caption">DETAIL PESANAN</span>
         <h1><?= clean($detailPesanan['no_pesanan']) ?></h1>
-        <p> <?= date('d M Y, H:i', strtotime($detailPesanan['tanggal_pesanan'])) ?> </p>
+        <p> <?= date('d M Y, H:i', strtotime($detailPesanan['dibuat_pada'] ?? $detailPesanan['tanggal_pesanan'])) ?> WIB </p>
       </div>
       <span class="badge-status bg-<?= $color ?>"> <?= $label ?> </span>
     </div>
@@ -305,7 +305,7 @@ include __DIR__ . '/../../includes/header.php';
             <div>
               <span class="order-caption">NO. PESANAN</span>
               <h3><?= clean($p['no_pesanan']) ?></h3>
-              <p> <?= date('d M Y, H:i', strtotime($p['tanggal_pesanan'])) ?> </p>
+            <p> <?= date('d M Y, H:i', strtotime($p['dibuat_pada'] ?? $p['tanggal_pesanan'])) ?> WIB </p>
             </div>
             <span class="badge-status bg-<?= $color ?>">
               <?= $label ?>
